@@ -8,6 +8,7 @@
 
 *  Automatizado en el Registry Hub de Docker  [luispa/base-tvheadend](https://registry.hub.docker.com/u/luispa/base-tvheadend/) 
 *  Conectado con el proyecto en [GitHub base-tvheadend](https://github.com/LuisPalacios/base-tvheadend)
+*  Servicio FIG para ejecutarlo en [GitHub servicio-tvheadend](https://github.com/LuisPalacios/servicio-tvheadend)
 
 Si te interesan otros casos de uso consulta este [apunte técnico sobre servicios en contenedores Docker](http://www.luispa.com/?p=172).
 
