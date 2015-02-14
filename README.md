@@ -84,8 +84,8 @@ Otra opción más normal es ejecutar en segundo plano y para ello recomiendo usa
 
 * Tienes toda la documentación en: Página del [proyecto Tvheadend](https://tvheadend.org/)
 
-<p align="justify">Una pequeña introducción: El programa presentanos un interfaz Web para poder configurar, en la versión 3.9+ tienes que crear los MUX's, después que se descubran los SERVICIOS, después crear los CANALES y fuentes EPG y finalmente conectar todo entre sí, es decir vincular cada canal con el Servicio y con el EPG. </p>
+<p align="justify">Una pequeña introducción: En la versión 3.9+ tienes que crear los MUX's, después que se descubran los SERVICIOS, después crear los CANALES y fuentes EPG y finalmente conectar todo entre sí, es decir vincular cada canal con el Servicio y con el EPG. </p>
 
-<p align="justify">¿Qué es un MUX? pues viene del concepto de Multiplexor que se maneja en las emisiones terrestres o satélite, donde dentro de una frecuencia agrupan varios canales multiplexados. Esa es la razón por la que lo primero a añadir es el MUX, para que lo "escanee" y descubra los servicios que lleva dentro. El paso a repetir por cana canal es crearlo como un objeto independiente y asociarle el servicio y EPG que corresponda. </p>
+<p align="justify">¿Qué es un MUX? pues viene del concepto de Multiplexor en las emisiones terrestres o por satélite, donde dentro de una frecuencia agrupan varios canales multiplexados. Esa es la razón por la que lo primero a añadir es el MUX, para que lo "escanee" y descubra los servicios que lleva dentro. El paso a repetir por cana canal es crearlo como un objeto independiente y asociarle el servicio y EPG que corresponda. </p>
 
 
