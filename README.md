@@ -1,10 +1,8 @@
 # Introducción
 
-Tvheadend es un DVR (Digital Video Recorder) y servidor de streaming de TV que soporta todo
-tipo de fuentes (físicas) DVB-C, DVB-T(2), DVB-S(2), ATSC y además fuentes llamemos "digitales": IPTV (UDP o HTTP). 
+<p style="text-align: justify;">Tvheadend es un DVR (Digital Video Recorder) y servidor de streaming de TV que soporta todo tipo de fuentes (físicas) DVB-C, DVB-T(2), DVB-S(2), ATSC y además fuentes "IP", conocidas como IP Televisión o IPTV (que usan los protocolos UDP o HTTP).</p> 
 
-Para el caso de las fuentes físicas quizá no tiene demasiado sentido un contenedor Docker
-debido al vínculo con el interfaz físico, pero sí lo tiene para el caso de usar solo fuentes IPTV. 
+Para el caso de las fuentes físicas quizá no tiene demasiado sentido un contenedor Docker debido al vínculo con el interfaz físico, pero sí lo tiene para el caso de usar solo fuentes IPTV.
 
 En este repositorio tenemos por tanto un *contenedor Docker* para ejecutar TVHeadEnd principalmente
 enfocado en dar servicio a canales IPTV (y su EPG). Está automatizado en el Registry Hub de Docker
