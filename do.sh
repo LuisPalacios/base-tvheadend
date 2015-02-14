@@ -20,6 +20,8 @@ if [ -f ${CONFIG_DONE} ] ; then
     NECESITA_PRIMER_CONFIG="no"
 fi
 
+# Cambiar los permisos para el directorio config
+chown -R tvheadend:tvheadend /config
 
 ##################################################################
 #
