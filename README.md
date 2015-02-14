@@ -4,10 +4,12 @@
 
 <p align="justify">Para el caso de las fuentes que necesitan un dispositivo o interfaz para la recepción quizá no tiene demasiado sentido un contenedor Docker debido al vínculo con dicho interfaz, pero sí lo tiene para el caso de usar solo fuentes IPTV.</p>
 
-<p align="justify">En este repositorio tenemos por tanto un *contenedor Docker* para ejecutar TVHeadEnd principalmente enfocado en dar servicio a canales IPTV (y su EPG). Está automatizado en el Registry Hub de Docker  [luispa/base-tvheadend](https://registry.hub.docker.com/u/luispa/base-tvheadend/) conectado con el proyecto en [GitHub base-tvheadend](https://github.com/LuisPalacios/base-tvheadend)</p>
+<p align="justify">En este repositorio tenemos por tanto un *contenedor Docker* para ejecutar TVHeadEnd principalmente enfocado en dar servicio a canales IPTV (y su EPG).</p>
 
-<p align="justify">Puede que te interesen otros casos de uso que he preparado con docker, si es así, en este [apunte técnico sobre servicios en contenedores Docker](http://www.luispa.com/?p=172) 
-encontrarás varios.</p> 
+*  Automatizado en el Registry Hub de Docker  [luispa/base-tvheadend](https://registry.hub.docker.com/u/luispa/base-tvheadend/) 
+*  Conectado con el proyecto en [GitHub base-tvheadend](https://github.com/LuisPalacios/base-tvheadend)
+
+Si te interesan otros casos de uso consulta este [apunte técnico sobre servicios en contenedores Docker](http://www.luispa.com/?p=172).
 
 
 ## Ficheros
@@ -20,12 +22,11 @@ encontrarás varios.</p>
 
 ## Construcción
 
-Si deseas construir tú mismo este contenedor primero necesitas clonarlo desde Github para
-poder trabajar con él directamente
+<p align="justify">Si deseas construir tú mismo este contenedor primero necesitas clonarlo desde Github para poder trabajar con él directamente:</p>
 
     ~ $ clone https://github.com/LuisPalacios/docker-tvheadend.git
 
-Luego ya puedes modificarlo y/o crear la imagen localmente con el siguiente comando
+Luego puedes modificarlo y/o crear la imagen localmente con el siguiente comando
 
     $ docker build -t luispa/base-tvheadend ./
 
@@ -33,7 +34,9 @@ Luego ya puedes modificarlo y/o crear la imagen localmente con el siguiente coma
 ## Ejecución
 
 <p align="justify">Cuando ejecutes el contenedor verás que la versión de TVHeadEnd instalada es la 3.9+ 
-(inestable), es decir, lo último disponible en su repositorio en [GitHub: tvheadend/tvheadend](https://github.com/tvheadend/tvheadend).</p>
+(inestable), es decir, lo último disponible en su repositorio</p>
+
+* [GitHub: tvheadend/tvheadend](https://github.com/tvheadend/tvheadend)
 
 Opcional y previo a la ejecución, puedes pre-descargarte desde el registry la imagen.
 
@@ -68,7 +71,9 @@ Para ejecutar manualmente a continuación tienes un ejemplo:
 
     http://ip_del_host_contenedor:9981
 
-<p align="justify">Tienes toda la documentación en la página del [proyecto Tvheadend](https://tvheadend.org/), así que aquí solo dejo una pequeña introducción: El programa presentanos un interfaz Web para poder configurar, en la versión 3.9+ tienes que crear los MUX's, después que se descubran los SERVICIOS, después crear los CANALES y fuentes EPG y finalmente conectar todo entre sí, es decir vincular cada canal con el Servicio y con el EPG. </p>
+* Tienes toda la documentación en: Página del [proyecto Tvheadend](https://tvheadend.org/)
+
+<p align="justify">Una pequeña introducción: El programa presentanos un interfaz Web para poder configurar, en la versión 3.9+ tienes que crear los MUX's, después que se descubran los SERVICIOS, después crear los CANALES y fuentes EPG y finalmente conectar todo entre sí, es decir vincular cada canal con el Servicio y con el EPG. </p>
 
 <p align="justify">¿Qué es un MUX? pues viene del concepto de Multiplexor que se maneja en las emisiones terrestres o satélite, donde dentro de una frecuencia agrupan varios canales multiplexados. Esa es la razón por la que lo primero a añadir es el MUX, para que lo "escanee" y descubra los servicios que lleva dentro. El paso a repetir por cana canal es crearlo como un objeto independiente y asociarle el servicio y EPG que corresponda. </p>
 
