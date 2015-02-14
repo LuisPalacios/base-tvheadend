@@ -5,7 +5,7 @@
 
 # Desde donde parto...
 #
-FROM debian:jessie
+FROM ubuntu:14.04
 
 #
 MAINTAINER Luis Palacios <luis@luispa.com>
@@ -15,11 +15,10 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Actualizo e instalo
 RUN apt-get update && \
-    apt-get -y install locales        \
-    	       	       openssh-server \
-    	       	       supervisor     \
-		       wget 	      \
-		       curl
+    apt-get -y install locales \
+               openssh-server \
+    	       supervisor \
+		       wget
 
 # Preparo locales
 #
@@ -33,20 +32,24 @@ RUN echo "Europe/Madrid" > /etc/timezone; dpkg-reconfigure -f noninteractive tzd
 
 # 
 # Dependencias de TVHeadEnd
-RUN apt-get install -y wget git curl make dkms dpkg-dev \
-    	    	       debconf-utils software-properties-common \
-		       linux-headers-3.16.0-4-all-amd64 \
-		       build-essential debhelper libswscale-dev \
-		       libavahi-client-dev libavformat-dev \
-		       libavcodec-dev liburiparser-dev \
-		       libssl-dev libiconv-hook1 libiconv-hook-dev
+RUN apt-get install -y git make dkms dpkg-dev \
+               debconf-utils software-properties-common \
+               build-essential debhelper libswscale-dev \		       
+               libavahi-client-dev libavcodec-dev \
+               libavfilter-dev libavformat-dev \
+               libavutil-dev libswscale-dev \
+               liburiparser1 liburiparser-dev \
+               debhelper libcurl4-gnutls-dev a52dec \		       
+               libssl-dev libiconv-hook1 libiconv-hook-dev \
+               librtmp-dev
+               
+# Probar en el futuro a añadir: libavcodec-extra-5??
 
 # Permitir a root vía SSH
 #
 RUN echo 'root:docker2014' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN mkdir /var/run/sshd
-
 
 # TVHeadEnd, descarga
 RUN git clone https://github.com/tvheadend/tvheadend.git /srv/tvheadend \
@@ -56,7 +59,9 @@ RUN git clone https://github.com/tvheadend/tvheadend.git /srv/tvheadend \
 #  Directorio ejecutable:       /usr/local/bin
 #  Directorio Datos Tvheadend:  /usr/local/share/tvheadend
 #
-RUN cd /srv/tvheadend && ./configure --libffmpeg_static && make && make install
+#### AUTOBUILD_CONFIGURE_EXTRA="--enable-libffmpeg_static" ./Autobuild.sh -t precise-amd64
+#
+RUN cd /srv/tvheadend && ./configure --enable-libffmpeg_static --enable-kqueue --enable-bundle && make && make install
 
 # Limpieza de ficheros temporales
 RUN rm -r /srv/tvheadend && apt-get purge -qq build-essential pkg-config git
@@ -64,7 +69,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Creo el usuario con el que se ejecutará TVHeadEnd
 RUN adduser --disabled-password --gecos '' tvheadend
-
 
 # Puertos expuestos
 #
