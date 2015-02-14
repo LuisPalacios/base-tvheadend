@@ -49,9 +49,11 @@ El paso importante es el siguiente, y tenemos varias formas de hacerlo, consiste
 
 Este sería un ejemplo de ejecución manual, donde ejecutamos en primer plano.
                                          
-    docker run -p 9981:9981 -p 9982:9982 -v /Users/luis/Apps/data/tvheadend/config:/config  \
-                                         -v /Users/luis/Apps/data/tvheadend/recordings:/recordings \
-                                         luispa/base-tvheadend supervisord -n -c /etc/supervisor/supervisord.conf
+    docker run -p 9981:9981 -p 9982:9982 \
+               -v /Apps/tvheadend/config:/config  \
+               -v /Apps/tvheadend/recordings:/recordings \
+               -v /usr/bin/tv_grab_wg++:/usr/bin/tv_grab_wg++
+               luispa/base-tvheadend supervisord -n -c /etc/supervisor/supervisord.conf
                                          
 
 ### Ejecutar con FIG
@@ -73,7 +75,11 @@ Los directorios locales (en el Host) que tienes que vincular son el directorio d
 
 El directorio "config" puede estar vacío y la primera vez se creará toda la subestructura y tendrás que configurar desde cero usando el interfaz Web. Por otro lado, si deseas migrar una instalación existente solo tienes que copiar todo el contenido del directorio de datos de la instalación antigua a este directorio (en mi ejemplo /Users/luis.../config).
 
-La seguridad que trae por defecto es inexistente, recomiendo que crees un usuario nada más empezar a administrar y restrinjas el acceso del usuario por defecto.
+Otro vínculo que realizo es el del script "tv_grab_wg++", se trata del grabber que utilizao para bajarme la programación (EPG) desde internet. Empleo el programa WebGrapg+Plus y lo ejecuto en el Host, por lo tanto necesito acceder a dicho script desde el contenedor. 
+
+    /usr/bin/tv_grab_wg++  -->  Script bash que uso para pasarle a tvheadend el EPG
+    
+Por último, la seguridad que trae por defecto es inexistente, recomiendo que crees un usuario nada más empezar a administrar y restrinjas el acceso del usuario por defecto.
 
 
 ## Uso de TVHeadEnd
