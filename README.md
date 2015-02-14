@@ -20,7 +20,7 @@ Si te interesan otros casos de uso consulta este [apunte técnico sobre servicio
 
 # Gestión del contenedor
 
-## Construcción
+## Clonar y manipular
 
 <p align="justify">Si deseas construir tú mismo este contenedor primero necesitas clonarlo desde Github para poder trabajar con él directamente:</p>
 
@@ -31,24 +31,34 @@ Luego puedes modificarlo y/o crear la imagen localmente con el siguiente comando
     $ docker build -t luispa/base-tvheadend ./
 
 
-## Ejecución
+## Usarlo directamente
 
-<p align="justify">Cuando ejecutes el contenedor verás que la versión de TVHeadEnd instalada es la 3.9+ 
-(inestable), es decir, lo último disponible en su repositorio</p>
+<p align="justify">Si por otro lado lo que quieres es simplemente usar este contenedor solo tienes que instalarte Docker y seguir las instrucciones de esta sección. Nota que cuando ejecutes el contenedor verás que la versión de TVHeadEnd instalada es la 3.9+ (inestable), es decir, lo último disponible en su repositorio</p>
 
 * [GitHub: tvheadend/tvheadend](https://github.com/tvheadend/tvheadend)
 
-Opcional y previo a la ejecución, puedes pre-descargarte desde el registry la imagen.
+Empezamos. Este paso es opcional y previo a la ejecución, te permite pre-descargarte mi imagen desde el registry de Docker.
 
     ~ $ docker pull luispa/base-tvheadend
 
 
-Para ejecutar manualmente a continuación tienes un ejemplo:
+El paso importante es el siguiente, y tenemos varias formas de hacerlo, consiste en "Ejecutar" el contenedor y por tanto ejecutar Tvheadend. Elije entre una de las siguientes: 
+
+### Ejecutar manualmente 
+
+Este sería un ejemplo de ejecución manual, donde ejecutamos en primer plano.
                                          
     docker run -p 9981:9981 -p 9982:9982 -v /Users/luis/Apps/data/tvheadend/config:/config  \
                                          -v /Users/luis/Apps/data/tvheadend/recordings:/recordings \
                                          luispa/base-tvheadend supervisord -n -c /etc/supervisor/supervisord.conf
                                          
+
+### Ejecutar con FIG
+
+Otra opción más normal es ejecutar en segundo plano y para ello recomiendo usar FIG, necesitas el fichero fig.yml que he dejado en el repositorio [luispa/servicio-tvheadend](https://github.com/LuisPalacios/servicio-tvheadend)
+
+
+### Detalle de la ejecución
 
 <p align="justify">Si analizas el fichero do.sh verás que el comando que se ejecuta internamente a través de supervisord es el siguiente: </p>
 
