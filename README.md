@@ -47,12 +47,11 @@ El paso importante es el siguiente, y tenemos varias formas de hacerlo, consiste
 
 ### Ejecutar manualmente 
 
-Este sería un ejemplo de ejecución manual, donde ejecutamos en primer plano.
+Este sería un ejemplo de ejecución manual: 
                                          
     docker run -p 9981:9981 -p 9982:9982 \
                -v /Apps/tvheadend/config:/config  \
                -v /Apps/tvheadend/recordings:/recordings \
-               -v /usr/bin/tv_grab_wg++:/usr/bin/tv_grab_wg++
                luispa/base-tvheadend supervisord -n -c /etc/supervisor/supervisord.conf
                                          
 

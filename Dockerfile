@@ -70,6 +70,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Creo el usuario con el que se ejecutará TVHeadEnd
 RUN adduser --disabled-password --gecos '' tvheadend
 
+# Añado el grabber de WebGrab+Plus. Notar que este script espera que 
+# periódicamente se deje el fichero guide.xml en /config
+ADD ./tv_grab_wg++ /usr/bin/tv_grab_wg++
+RUN chmod 755 /usr/bin/tv_grab_wg++
+
 # Puertos expuestos
 #
 EXPOSE 9981 9982
