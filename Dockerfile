@@ -18,7 +18,8 @@ RUN apt-get update && \
     apt-get -y install locales \
                openssh-server \
     	       supervisor \
-		       wget
+		       wget vim 
+#               nginx-full
 
 # Preparo locales
 #

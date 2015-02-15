@@ -20,8 +20,13 @@ if [ -f ${CONFIG_DONE} ] ; then
     NECESITA_PRIMER_CONFIG="no"
 fi
 
+# Crear el directorio para los iconos
+mkdir -p /config/picons
+chmod 777 /config/picons
+
 # Cambiar los permisos para el directorio config
 chown -R tvheadend:tvheadend /config
+
 
 ##################################################################
 #
@@ -67,14 +72,15 @@ serverurl=unix:///var/run/supervisor.sock	; use a unix:// URL for a unix socket
 
 [program:tvheadend]
 command = /usr/bin/tvheadend -C -u tvheadend -g tvheadend -c /config
-; Option development
-;command = /usr/local/bin/tvheadend -C -u tvheadend -g tvheadend -c /config
 
 EOF
 
+	############
     #
     # Creo el fichero de control para que el resto de 
     # ejecuciones no realice la primera configuración
+    #
+	############
     > ${CONFIG_DONE}
 
 fi
@@ -86,4 +92,3 @@ fi
 ##################################################################
 #
 exec "$@"
-

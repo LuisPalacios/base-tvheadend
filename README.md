@@ -95,3 +95,10 @@ Una pequeña introducción: En la versión 3.9+ tienes que crear los MUX's, desp
 ¿Qué es un MUX? pues viene del concepto de Multiplexor en las emisiones terrestres o por satélite, donde dentro de una frecuencia agrupan varios canales multiplexados. Esa es la razón por la que lo primero a añadir es el MUX, para que lo "escanee" y descubra los servicios que lleva dentro. El paso a repetir por cana canal es crearlo como un objeto independiente y asociarle el servicio y EPG que corresponda.
 
 
+### Picons
+
+Para poder configurar tus propios logos junto con Tvheadend te recomiendo que coloques los ficheros .jpg o .png de tus logos en el directorio /config/picons que se creará automáticamente al iniciar el contenedor por primera vez, a partir de ahí ya solo tienes que apuntar en cada canal al logo que desees, por ejemplo: 
+
+* Copio TVE_HD.png a /Users/luis/Apps/data/tvheadend/config/picons
+* Configuro el logo del canal con: file://config/picons/TVE_HD.png
+
