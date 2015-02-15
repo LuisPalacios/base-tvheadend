@@ -17,7 +17,7 @@ Si te interesan otros casos de uso consulta este [apunte técnico sobre servicio
 
 * **Dockerfile**: Necesario para crear la base de servicio.
 * **do.sh**: Script que se ejecuta al arrancar el contenedor.
-* **tvheadend_3.9...deb**: Paquete de instalación de Tvheadend compilado desde GitHub usando el contenedor del proyecto [GitHub base-tvheadend-deb](https://github.com/LuisPalacios/base-tvheadend-deb)
+* **tvheadend_3.9...deb**: Paquete .deb que empleo para hacer la instalación de Tvheadend. Este paquete lo he creado yo mismo compilando desde los fuentes de Tvheadend, para ello he usado otro proyecto que tienes disponible en [base-tvheadend-deb](https://github.com/LuisPalacios/base-tvheadend-deb)
 
 
 # Gestión del contenedor
