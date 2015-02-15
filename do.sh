@@ -66,7 +66,9 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix:///var/run/supervisor.sock	; use a unix:// URL for a unix socket 
 
 [program:tvheadend]
-command = /usr/local/bin/tvheadend -C -u tvheadend -g tvheadend -c /config
+command = /usr/bin/tvheadend -C -u tvheadend -g tvheadend -c /config
+; Option development
+;command = /usr/local/bin/tvheadend -C -u tvheadend -g tvheadend -c /config
 
 EOF
 
