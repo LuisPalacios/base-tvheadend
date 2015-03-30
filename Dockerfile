@@ -87,9 +87,12 @@ RUN apt-get install -y build-essential \
     
 # B.1) Instalar el paquete precompilado
 #
-ADD ./tvheadend_3.9.2497~g54533b3~precise_amd64.deb /tmp/tvheadend_3.9.2497~g54533b3~precise_amd64.deb
-RUN dpkg --install /tmp/tvheadend_3.9.2497~g54533b3~precise_amd64.deb
-RUN rm -f /tmp/tvheadend_3.9.2497~g54533b3~precise_amd64.deb
+#ENV debfile tvheadend_3.9.2497~g54533b3~precise_amd64.deb
+
+ENV debfile tvheadend_3.9.2662~ge4cdd3c~precise_amd64.deb
+ADD ${debfile} /tmp/${debfile}
+RUN dpkg --install /tmp/${debfile}
+RUN rm -f /tmp/${debfile}
 
 # Añado el grabber de WebGrab+Plus. Notar que este script espera que 
 # periódicamente se deje el fichero guide.xml en /config
