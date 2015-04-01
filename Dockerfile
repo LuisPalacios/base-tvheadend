@@ -18,7 +18,7 @@ RUN apt-get update && \
     apt-get -y install locales \
                openssh-server \
     	       supervisor \
-		       wget vim 
+		       wget curl vim 
 #               nginx-full
 
 # Preparo locales
@@ -77,18 +77,24 @@ RUN adduser --disabled-password --gecos '' tvheadend
 # OPCCION B) - Usar un paquete pre-compilado que ha sido creado con otro proyecto
 # también disponible en GitHub: (https://github.com/LuisPalacios/base-tvheadend-deb)
 #
-# B.1) Instalar dependencias
+# B.1) Instalar dependencias y las libav-tools
 RUN apt-get install -y build-essential \
                        python-software-properties \
                        libavahi-client3 \
                        libavahi-common3 \
                        liburiparser1 \
-                       software-properties-common
-    
-# B.1) Instalar el paquete precompilado
+                       software-properties-common \
+                       libav-tools
+                       
+# Instalo nodejs 0.12 para poder instalar node-ffmpeg-mpegts-proxy
+# Ver --> https://github.com/Jalle19/node-ffmpeg-mpegts-proxy
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+RUN apt-get install -y nodejs
+                           
+# B.1) Instalo el tvheadend precompilado
+# Para crear el fichero .deb uso el proyecto https://github.com/LuisPalacios/base-tvheadend-deb
 #
 #ENV debfile tvheadend_3.9.2497~g54533b3~precise_amd64.deb
-
 ENV debfile tvheadend_3.9.2662~ge4cdd3c~precise_amd64.deb
 ADD ${debfile} /tmp/${debfile}
 RUN dpkg --install /tmp/${debfile}
