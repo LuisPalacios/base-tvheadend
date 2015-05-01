@@ -86,16 +86,41 @@ RUN apt-get install -y build-essential \
                        software-properties-common \
                        libav-tools
                        
+#
+# ====== ====== ====== ====== ====== ====== ====== ====== ====== ====== ======
+# EXPERIMENTAL: node-ffmpeg-mpegts-proxy-master
+# ====== ====== ====== ====== ====== ====== ====== ====== ====== ====== ======
+# Se trata de un proxy que utiliza avcon(ffmpeg) para convertir cualquier URL fuente
+# en un stream MPEG-TS sobre HTTP. Estoy probándolo porque necesito forzar que se  
+# resintonice el canal antes de solicitar el stream cuando solicito canales a 
+# mi dreambox (con tarjeta de recepción de Satélite). En la Dreambox empleo el 
+# software openspa 3.x y al solicitar un stream vía HTTP no siempre hace un ZapTo
+# al canal, por lo que devuelve error. Necesito un sistema mediante el cual 
+# pueda ejecutar un "pre-comando" antes de solicitar el streaming del video, he
+# visto que este pequeño programa puede hacerlo (en teoría)
+#
+
 # Instalo nodejs 0.12 para poder instalar node-ffmpeg-mpegts-proxy
 # Ver --> https://github.com/Jalle19/node-ffmpeg-mpegts-proxy
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 RUN apt-get install -y nodejs
-                           
+
+# Instalo el proxy...
+RUN mkdir -p /root/proxy && mkdir -p /root/proxy/libs && mkdir -p /root/proxy/support
+ADD node-ffmpeg-mpegts-proxy/node-ffmpeg-mpegts-proxy.js /root/proxy/node-ffmpeg-mpegts-proxy.js
+ADD node-ffmpeg-mpegts-proxy/package.json /root/proxy/package.json
+ADD node-ffmpeg-mpegts-proxy/README.md /root/proxy/README.md
+RUN chmod 755 /root/proxy/node-ffmpeg-mpegts-proxy.js
+ADD node-ffmpeg-mpegts-proxy/libs /root/proxy/libs
+ADD node-ffmpeg-mpegts-proxy/support /root/proxy/support
+RUN cd /root/proxy && npm install
+
 # B.1) Instalo el tvheadend precompilado
 # Para crear el fichero .deb uso el proyecto https://github.com/LuisPalacios/base-tvheadend-deb
 #
-#ENV debfile tvheadend_3.9.2497~g54533b3~precise_amd64.deb
-ENV debfile tvheadend_3.9.2662~ge4cdd3c~precise_amd64.deb
+ENV debfile tvheadend_3.9.2497~g54533b3~precise_amd64.deb
+#ENV debfile tvheadend_3.9.2662~ge4cdd3c~precise_amd64.deb
+#ENV debfile tvheadend_3.9.2675~ge4f034a~precise_amd64.deb
 ADD ${debfile} /tmp/${debfile}
 RUN dpkg --install /tmp/${debfile}
 RUN rm -f /tmp/${debfile}
