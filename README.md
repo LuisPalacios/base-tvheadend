@@ -24,6 +24,19 @@ Si te interesan otros casos de uso y ejemplos de contenedores docker consulta es
 Nota: Para crear el "tvheadend_3.9...deb" uso un proyecto en GitHub que tienes disponible aquí [base-tvheadend-deb](https://github.com/LuisPalacios/base-tvheadend-deb).
 
 
+# Personalización
+
+### Volumen
+
+
+Directorio persistente para configurar el Timezone. Crear el directorio /Apps/data/tz y dentro de él crear el fichero timezone. Luego montarlo con -v o con fig.yml
+
+    Montar:
+       "/Apps/data/tz:/config/tz"  
+    Preparar: 
+       $ echo "Europe/Madrid" > /config/tz/timezone
+
+
 # Gestión del contenedor
 
 ## Clonar y manipular
